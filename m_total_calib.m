@@ -1,9 +1,9 @@
-%% select data files
-
+%% select data file directory
 [path] = uigetdir();
 exportq=1;%do you want to export the data?
 outputfilename = strcat('DSCtotcalibdata',date,'.mat');
-[litfile, litpath] = uigetfile('.csv','MultiSelect','off');
+%[litfile, litpath] = uigetfile('.csv','MultiSelect','off');
+litdata=readtable('litdata.csv');
 %% change WD
 cd(path);
 txtfiles=dir('*.txt')
@@ -74,8 +74,9 @@ xFit = linspace(min(Hrate), max(Hrate), 1000);
 yFit = polyval(coefficients , xFit);
 hold on
 plot(xFit,yFit)
-
-litdata=readtable([litpath,litfile]);
+if ~exist("litdata","var")
+    litdata=readtable([litpath,litfile]);
+end
 yline(litdata.Te(strcmp(litdata.Standard,path(end-1:end))))
 xlabel('Heating Rate (degrees per second)')
 ylabel('Extrapolated Onset Temperature (^o C)')

@@ -1,4 +1,5 @@
 %load("/Users/roryrose/OneDrive - Imperial College London/Year 1/DSC/Analysis Code/DSC_tot_calib_data.mat");
+litdata=readtable('litdata.csv');
 %select parent folder
 [path] = uigetdir();
 % change WD
@@ -14,7 +15,7 @@ numfiles=length(subFolders);
 names={subFolders.name};
 %% plot HFR
 outdata=table();
-litdata=readtable([litpath,litfile]);
+
 for i=1:numfiles
     litidx=strcmp(litdata.Standard,names{i});
     HFR=(DB.(names{i}).H);

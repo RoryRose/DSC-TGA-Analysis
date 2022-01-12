@@ -5,8 +5,7 @@
 exportq=0;%do you want to export the data?
 outputfilename = strcat('DSCpost1callibdata',date,'.xlsx');
 %find the literature data (put your location in here)
-litpath='/Users/roryrose/OneDrive - Imperial College London/Year 1/DSC/Analysis Code/litdata.csv';
-litdata=readtable(litpath);
+litdata=readtable('litdata.csv');
 % OR do this:
 %{
 [litfile, litpath] = uigetfile('.csv','MultiSelect','off');

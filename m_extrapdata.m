@@ -8,7 +8,7 @@ files(ismember( {files.name}, {'.', '..'})) = [];  %remove . and ..
 dirFlags = [files.isdir];
 % Extract only those that are directories.
 subFolders = files(dirFlags);
-
+files=subFolders;
 numfiles=length(subFolders);
 file=cell(1,numfiles);
 matname=file;
@@ -25,7 +25,7 @@ for i=1:numfiles
 end
 %% import the literature data from a csv file and plot 
 % the difference to the observed data as a function of Temperatre
-litdata=readtable([litpath,litfile]);
+litdata=readtable('litdata.csv');
 delT=NaN(length(litdata.Standard),4);
 figure(1);
 elementnames=[];
@@ -72,4 +72,4 @@ for i=1:numfiles
     DB.(names{i}).taulag=grad(i);
     DB.(names{i}).zeroHrate_Te=yinter(i);
 end
-save('/Users/roryrose/OneDrive - Imperial College London/Year 1/DSC/Tot Calib Ar gas/DSC_tot_calib_data.mat','DB')
+save(strcat[path,'DSC_tot_calib_data.mat'],'DB')
