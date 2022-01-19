@@ -1,5 +1,14 @@
-govee=readtable("/Users/roryrose/OneDrive - Imperial College London/Year 1/DSC/1 week hold/DSC 1 week  hold - 2 room T ")
-govee.t=datetime(govee.Timestamp_for_sample_frequency_every_1Min_min);
+govee=readtable("govee_exp_2.csv")
+govee.t=datetime(govee.Timestamp_for_sample_frequency_every_30Min_min);
+figure()
+yyaxis left
+plot(govee.t,govee.Temperature_Celsius,'.','MarkerSize',7)
+ylabel('Room Temperature (^oC)')
+yyaxis right
+plot(govee.t,govee.Relative_Humidity,'.','MarkerSize',7)
+ylabel('Room Humidity (%)')
+hold on
+xline(datetime(2022,01,08),'LineWidth',5)
 if ~exist("fignum","var")
     fignum=1;
 end
